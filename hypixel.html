@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>Hypixel Stats</title>
+    <script>
+        function countdown() {
+            var seconds = 30;
+            setInterval(function() {
+                seconds--;
+                if (seconds <= 0) {
+                    window.location.reload();
+                }
+                document.getElementById("countdown").innerHTML = "Next refresh in " + seconds + " seconds";
+            }, 1000);
+        }
+    </script>
+</head>
+
+<body onload="countdown()">
+    <p>BachErik:</p><br>
+    <img src="https://gen.plancke.io/exp/BachErik_.png" width="910" height="40" alt="BachErik Level">
+    <p>Lets_Play_Nik:</p><br>
+    <img src="https://gen.plancke.io/exp/Lets_Play_Nik.png" width="910" height="40" alt="Lets_Play_Nik Level">
+    <p>McModknower:</p><br>
+    <img src="https://gen.plancke.io/exp/McModknower.png" width="910" height="40" alt="McModknower Level">
+    <div id="countdown">Next refresh in 30 seconds</div>
+</body>
+
+</html>
