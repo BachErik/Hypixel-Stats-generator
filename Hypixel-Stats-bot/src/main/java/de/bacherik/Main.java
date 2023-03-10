@@ -6,6 +6,6 @@ public class Main {
     public static Logger logger = Logger.getRootLogger();
 
     public static void main(String[] args) {
-        new Bot().init();
+        new Bot().init(args[0]);
     }
 }

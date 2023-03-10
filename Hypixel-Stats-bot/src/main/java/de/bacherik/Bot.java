@@ -34,17 +34,17 @@ public class Bot {
         Bot.servers = servers;
     }
 
-    public void init() {
+    public void init(String token) {
         Main.logger.info("Bot Initialisation ...");
         instance = this;
         commandManager = new CommandManager();
-        start();
+        start(token);
         Main.logger.info("Bot Initializationed!");
     }
 
-    public void start() {
+    public void start(String token) {
         Main.logger.info("Bot Strarting ...");
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(Connection.token);
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setActivity(Activity.watching("Starting ..."));
         builder.disableIntents(GatewayIntent.GUILD_MESSAGE_TYPING, GatewayIntent.DIRECT_MESSAGE_TYPING);
         builder.addEventListeners(new ReadyListener());
