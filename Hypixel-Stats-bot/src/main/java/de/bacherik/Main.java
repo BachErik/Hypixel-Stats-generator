@@ -1,7 +1,11 @@
 package de.bacherik;
 
+import org.apache.log4j.Logger;
+
 public class Main {
+    public static Logger logger = Logger.getRootLogger();
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new Bot().init();
     }
 }
