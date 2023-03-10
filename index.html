@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="30">
+
     <!-- Define meta tags for link previews -->
     <meta property="og:title" content="Hypixel Stats">
     <meta property="og:description" content="Check out the levels of BachErik, Lets_Play_Nik, and McModknower on Hypixel!">
@@ -21,6 +22,32 @@
     <meta name="twitter:image" content="https://gen.plancke.io/exp/McModknower.png">
     <meta name="twitter:url" content="https://bacherik.github.io/Hypixel-Stats-generator/">
     <title>Hypixel Stats</title>
+    <style>
+        body {
+            background-color: #1f1f23;
+            color: #fff;
+            font-family: "minecraft", sans-serif;
+        }
+        
+        p {
+            margin: 0;
+        }
+        
+        img {
+            display: block;
+            margin: 10px 0;
+        }
+        
+        #countdown {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        @font-face {
+            font-family: 'minecraft';
+            src: url('Minecraftia.ttf') format('truetype');
+        }
+    </style>
     <script>
         function countdown() {
             var seconds = 30;
@@ -36,11 +63,11 @@
 </head>
 
 <body onload="countdown()">
-    <p>BachErik:</p><br>
+    <p>BachErik:</p>
     <img src="https://gen.plancke.io/exp/BachErik_.png" width="910" height="40" alt="BachErik Level">
-    <p>Lets_Play_Nik:</p><br>
+    <p>Lets_Play_Nik:</p>
     <img src="https://gen.plancke.io/exp/Lets_Play_Nik.png" width="910" height="40" alt="Lets_Play_Nik Level">
-    <p>McModknower:</p><br>
+    <p>McModknower:</p>
     <img src="https://gen.plancke.io/exp/McModknower.png" width="910" height="40" alt="McModknower Level">
     <div id="countdown">Next refresh in 30 seconds</div>
 </body>
