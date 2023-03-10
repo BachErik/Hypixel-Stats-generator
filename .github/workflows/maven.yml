@@ -27,5 +27,12 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
       run: mvn -B package --file Hypixel-Stats-bot/pom.xml
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Hypixel-Stats-bot
+        path: Hypixel-Stats-bot/target/Hypixel-Stats-bot.jar
