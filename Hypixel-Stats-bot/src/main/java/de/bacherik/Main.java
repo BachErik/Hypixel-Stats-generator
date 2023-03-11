@@ -1,12 +1,13 @@
 package de.bacherik;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Arrays;
 
 public class Main {
-    public static Logger logger = Logger.getRootLogger();
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -32,7 +33,7 @@ public class Main {
 
         // Here you can read and process the content of the JSON file
         logger.debug(Arrays.toString(args));
-        logger.debug(configFile);
+        logger.debug(String.valueOf(configFile));
         new Bot().init(configFile);
     }
 }

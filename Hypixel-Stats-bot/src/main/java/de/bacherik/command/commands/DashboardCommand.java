@@ -4,14 +4,14 @@ import de.bacherik.Bot;
 import de.bacherik.command.Command;
 import de.bacherik.command.CommandInteraction;
 import net.dv8tion.jda.api.EmbedBuilder;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.sql.*;
 
 public class DashboardCommand extends Command {
-    private static final Logger logger = LogManager.getLogger(DashboardCommand.class);
+    private static final Logger logger = LoggerFactory.getLogger(DashboardCommand.class);
 
     public DashboardCommand(String name, String description) {
         super(name, description);
@@ -19,9 +19,9 @@ public class DashboardCommand extends Command {
 
     @Override
     public void execute(CommandInteraction command) {
-        /*
 
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Does not work correct !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Does not work correct
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
         // Connect to the database
@@ -75,7 +75,7 @@ public class DashboardCommand extends Command {
             ResultSet rs = stmt.executeQuery(sql);
             stmt.close();
 
-            logger.debug(stmt);
+            logger.debug(String.valueOf(stmt));
 
             String dashboard1 = "";
             String dashboard2 = "";
@@ -117,8 +117,9 @@ public class DashboardCommand extends Command {
         }
 
 
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Does not work correct !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Does not work correct
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        */
+
     }
 }

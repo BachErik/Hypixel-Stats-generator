@@ -5,12 +5,12 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OnGuild extends ListenerAdapter {
-    private static final Logger logger = LogManager.getLogger(OnGuild.class);
+    private static final Logger logger = LoggerFactory.getLogger(OnGuild.class);
 
     @Override
     public void onGuildJoin(@NotNull GuildJoinEvent event) {

@@ -1,15 +1,15 @@
 package de.bacherik.listeners;
 
 import de.bacherik.Bot;
-import de.bacherik.Main;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReadyListener extends ListenerAdapter {
+    private static final Logger logger = LoggerFactory.getLogger(ReadyListener.class);
 
     private static int instances = 0;
     private static int readyShards = 0;
@@ -17,13 +17,13 @@ public class ReadyListener extends ListenerAdapter {
     @Override
     public void onReady(@NotNull ReadyEvent event) {
         Bot.getInstance().getCommandManager().init(event.getJDA());
-        Main.logger.debug("[Shard " + (instances + 1) + "] started");
+        logger.debug("[Shard " + (instances + 1) + "] started");
         instances++;
         readyShards++;
         if (Bot.getInstance().getShardManager().getShardsTotal() == instances) {
-            Main.logger.info("FINISH");
+            logger.info("FINISH");
             for (int i = 0; i < Bot.getInstance().getShardManager().getShards().size(); i++) {
-                Main.logger.debug("[Shard " + (i + 1) + "]: Guilds: " + Bot.getInstance().getShardManager().getShards().get(i).getGuilds().size());
+                logger.debug("[Shard " + (i + 1) + "]: Guilds: " + Bot.getInstance().getShardManager().getShards().get(i).getGuilds().size());
             }
         }
         if (Bot.getInstance().getShardManager().getShardsTotal() == readyShards) {
