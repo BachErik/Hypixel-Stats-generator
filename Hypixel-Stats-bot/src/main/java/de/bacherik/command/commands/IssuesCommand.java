@@ -6,8 +6,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.awt.*;
 
-public class Issues extends Command {
-    public Issues(String name, String description) {
+public class IssuesCommand extends Command {
+    public IssuesCommand(String name, String description) {
         super(name, description);
     }
 

@@ -5,6 +5,8 @@ import de.bacherik.Main;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 public class ReadyListener extends ListenerAdapter {
@@ -19,7 +21,7 @@ public class ReadyListener extends ListenerAdapter {
         instances++;
         readyShards++;
         if (Bot.getInstance().getShardManager().getShardsTotal() == instances) {
-            Main.logger.info("FERTIG");
+            Main.logger.info("FINISH");
             for (int i = 0; i < Bot.getInstance().getShardManager().getShards().size(); i++) {
                 Main.logger.debug("[Shard " + (i + 1) + "]: Guilds: " + Bot.getInstance().getShardManager().getShards().get(i).getGuilds().size());
             }
@@ -35,7 +37,7 @@ public class ReadyListener extends ListenerAdapter {
                 ));
             } else {
                 Bot.getInstance().getShardManager().setActivity(Activity.playing("auf " + Bot.servers + " " +
-                        "Serveren"));
+                        "Servers"));
             }
         }
     }

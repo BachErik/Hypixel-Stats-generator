@@ -1,8 +1,9 @@
 package de.bacherik.command;
 
 
+import de.bacherik.command.commands.DashboardCommand;
 import de.bacherik.command.commands.HelpCommand;
-import de.bacherik.command.commands.Issues;
+import de.bacherik.command.commands.IssuesCommand;
 import de.bacherik.command.commands.TestCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -21,7 +22,9 @@ public class CommandManager {
         commands.add(new TestCommand("test", "This is a Test Command").addArgument(OptionType.BOOLEAN,
                 "wie-geht-es" + "-dir", "help", true).addArgument(OptionType.BOOLEAN, "wie-geht-es", "me"));
         commands.add(new HelpCommand("help", "This will show you a list of Commands."));
-        commands.add(new Issues("issues", "Link to issues, bugs, Problems and Features, report Site"));
+        commands.add(new IssuesCommand("issues",
+                "Link to the page where you can request/report problems, errors, " + "bugs or features."));
+        commands.add(new DashboardCommand("dashboard", "let setup or show your dashboard"));
     }
 
     public void init(JDA jda) {
@@ -29,12 +32,15 @@ public class CommandManager {
             CommandCreateAction commandCreateAction = jda.upsertCommand(command.getName(), command.getDescription());
             for (CommandArgument commandArgument : command.getArgs()) {
                 commandCreateAction.addOption(commandArgument.getOptionType(), commandArgument.getName(),
-                        commandArgument.getDescription(), commandArgument.isRequired());
+                        commandArgument.getDescription(), commandArgument.isRequired()
+                );
             }
             if (command.getArgs().size() < 1) {
                 for (SubCommand subCommand : command.getSubCommands()) {
-                    commandCreateAction.addSubcommands(new SubcommandData(subCommand.getName(),
-                            subCommand.getDescription()));
+                    commandCreateAction.addSubcommands(new SubcommandData(
+                            subCommand.getName(),
+                            subCommand.getDescription()
+                    ));
                 }
             }
             commandCreateAction.queue();

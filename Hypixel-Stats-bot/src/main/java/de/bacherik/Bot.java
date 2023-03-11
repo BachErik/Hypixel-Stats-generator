@@ -4,19 +4,25 @@ import de.bacherik.command.CommandManager;
 import de.bacherik.listeners.OnGuild;
 import de.bacherik.listeners.ReadyListener;
 import de.bacherik.listeners.SlashCommandListener;
+import de.leonhard.storage.Json;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import java.io.File;
 
 public class Bot {
 
-
+    private static final Logger logger = LogManager.getLogger(Bot.class);
     public static int servers;
     private static Bot instance;
     private ShardManager shardManager;
     private CommandManager commandManager;
     private int guildCount;
+    private File config;
 
     public static Bot getInstance() {
         return instance;
@@ -34,17 +40,18 @@ public class Bot {
         Bot.servers = servers;
     }
 
-    public void init(String token) {
-        Main.logger.info("Bot Initialisation ...");
+    public void init(File config) {
+        logger.info("Bot Initialisation ...");
         instance = this;
+        this.config = config;
         commandManager = new CommandManager();
-        start(token);
-        Main.logger.info("Bot Initializationed!");
+        start();
+        logger.info("Bot Initialization finished!");
     }
 
-    public void start(String token) {
-        Main.logger.info("Bot Strarting ...");
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
+    public void start() {
+        logger.info("Bot Starting ...");
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(getDiscordToken().toString());
         builder.setActivity(Activity.watching("Starting ..."));
         builder.disableIntents(GatewayIntent.GUILD_MESSAGE_TYPING, GatewayIntent.DIRECT_MESSAGE_TYPING);
         builder.addEventListeners(new ReadyListener());
@@ -54,7 +61,7 @@ public class Bot {
         builder.setShardsTotal(2);
 
         shardManager = builder.build();
-        Main.logger.info("Bot started!");
+        logger.info("Bot started!");
     }
 
     public int getGuildCount() {
@@ -79,5 +86,30 @@ public class Bot {
 
     public void setShardManager(ShardManager shardManager) {
         this.shardManager = shardManager;
+    }
+
+    public Object getDiscordToken() {
+        Json config = new Json(this.config);
+        return config.get("bot-token");
+    }
+
+    public Object getMySQLHost() {
+        Json config = new Json(this.config);
+        return config.get("database-host");
+    }
+
+    public Object getMySQLUsername() {
+        Json config = new Json(this.config);
+        return config.get("database-username");
+    }
+
+    public Object getMySQLPassword() {
+        Json config = new Json(this.config);
+        return config.get("database-password");
+    }
+
+    public Object getMySQLName() {
+        Json config = new Json(this.config);
+        return config.get("database-name");
     }
 }
