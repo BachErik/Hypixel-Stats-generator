@@ -1,7 +1,7 @@
 {
-    "bot-token": "token",
-    "database-name": "Hypixel-Stats",
-    "database-username": "root",
-    "database-host": "localhost:3306",
-    "database-password": "test"
+  "bot-token": "token",
+  "database-name": "Hypixel-Stats",
+  "database-username": "root",
+  "database-host": "localhost:3306",
+  "database-password": "test"
 }

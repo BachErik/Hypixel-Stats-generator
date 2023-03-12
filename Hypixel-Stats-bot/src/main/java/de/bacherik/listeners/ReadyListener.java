@@ -4,9 +4,9 @@ import de.bacherik.Bot;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 public class ReadyListener extends ListenerAdapter {
     private static final Logger logger = LogManager.getLogger(ReadyListener.class);
