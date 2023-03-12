@@ -5,11 +5,11 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ReadyListener extends ListenerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(ReadyListener.class);
+    private static final Logger logger = LogManager.getLogger(ReadyListener.class);
 
     private static int instances = 0;
     private static int readyShards = 0;
