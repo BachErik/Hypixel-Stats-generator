@@ -9,14 +9,14 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
 public class Bot {
 
-    private static final Logger logger = LoggerFactory.getLogger(Bot.class);
+    private static final Logger logger = LogManager.getLogger(Bot.class);
     public static int servers;
     private static Bot instance;
     private ShardManager shardManager;

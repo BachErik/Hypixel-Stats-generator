@@ -4,14 +4,14 @@ import de.bacherik.Bot;
 import de.bacherik.command.Command;
 import de.bacherik.command.CommandInteraction;
 import net.dv8tion.jda.api.EmbedBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.sql.*;
 
 public class DashboardCommand extends Command {
-    private static final Logger logger = LoggerFactory.getLogger(DashboardCommand.class);
+    private static final Logger logger = LogManager.getLogger(DashboardCommand.class);
 
     public DashboardCommand(String name, String description) {
         super(name, description);
