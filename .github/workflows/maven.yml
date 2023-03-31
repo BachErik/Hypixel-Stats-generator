@@ -32,7 +32,7 @@ jobs:
       run: mvn -B package --file Hypixel-Stats-bot/pom.xml
       
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Hypixel-Stats-bot
         path: Hypixel-Stats-bot/target/Hypixel-Stats-bot-1.0-SNAPSHOT.jar
