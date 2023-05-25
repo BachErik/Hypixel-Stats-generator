@@ -78,7 +78,7 @@
         <dependency>
             <groupId>com.github.Simplix-Softworks</groupId>
             <artifactId>SimplixStorage</artifactId>
-            <version>3.2.5</version>
+            <version>3.2.6</version>
             <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
