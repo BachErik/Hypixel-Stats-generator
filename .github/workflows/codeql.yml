@@ -1,0 +1,65 @@
+# For most projects, this workflow file will not need changing; you simply need
+# to commit it to your repository.
+#
+# See https://github.com/github/codeql-action for the latest docs.
+name: "CodeQL"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    # Weekly scan, Monday 06:00 UTC (keeps drift/new-query results flowing in
+    # even when nobody pushes for a while)
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  # Required to upload results to Code Scanning
+  security-events: write
+  # Required to read the repo for private repos; harmless on public
+  contents: read
+  # Recommended by GitHub's CodeQL template
+  actions: read
+  packages: read
+
+concurrency:
+  group: "codeql-${{ github.ref }}"
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Covers the inline <script> block in index.html
+          - language: javascript-typescript
+            build-mode: none
+          # Scans the workflow files themselves (script injection, unpinned
+          # actions, dangerous permissions, ...)
+          - language: actions
+            build-mode: none
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          # If you later want to tweak queries, point this at a config file:
+          # config-file: ./.github/codeql/codeql-config.yml
+          queries: security-extended
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
